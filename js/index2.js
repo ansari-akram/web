@@ -43,13 +43,11 @@ function startSr() {
 }
 
 function addMsg(_msg) {
-  try {
-    var msg = _msg.textContent;
-    console.log('intry '+ msg);
+  var msg = _msg.textContent;
+  if (msg === undefined) {
+    msg = _msg;
   }
-  catch(err) {
-    var msg = _msg;
-  }
+  console.log("MSG " + msg);
 
   var div = document.createElement("div");
   div.innerHTML =

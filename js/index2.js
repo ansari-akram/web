@@ -43,6 +43,7 @@ function startSr() {
 }
 
 function addMsg(msg) {
+  console.log('addmsg ' + msg);
   var div = document.createElement("div");
   div.innerHTML =
     "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +
@@ -119,7 +120,7 @@ function addOnlyMsg(msg) {
   console.log(_tmp);
   console.log(_tmp[1]);
   var div = document.createElement("div");
-  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<b style='text-decoration: underline' onclick='addMsg('"+ _tmp[1] +"')'>" + _tmp[1] + "</b>'</div>";
+  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<b style='text-decoration: underline' onclick='addMsg(this)'>" + _tmp[1] + "</b>'</div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
 

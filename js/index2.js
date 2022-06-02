@@ -42,8 +42,15 @@ function startSr() {
   }
 }
 
-function addMsg(msg) {
-  console.log('addmsg ' + msg.textContent);
+function addMsg(_msg) {
+  try {
+    var msg = _msg.textContent;
+    console.log('intry '+ msg);
+  }
+  catch(err) {
+    var msg = _msg;
+  }
+
   var div = document.createElement("div");
   div.innerHTML =
     "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +

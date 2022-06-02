@@ -4,7 +4,7 @@ var running = false,
   name = "",
   email = "",
   dept_custom = "Custom"
-server_api = 'https://ac-cbfe-d1.zu.ac.ae/chatbot',
+  server_api = 'https://ac-cbfe-d1.zu.ac.ae/chatbot',
   greeting_id = "8",
   livechat_id = "6",
   no_answer_id = "5",
@@ -47,7 +47,6 @@ function addMsg(_msg) {
   if (msg === undefined) {
     msg = _msg;
   }
-  console.log("MSG " + msg);
 
   var div = document.createElement("div");
   div.innerHTML =
@@ -125,7 +124,7 @@ function addOnlyMsg(msg) {
   console.log(_tmp);
   console.log(_tmp[1]);
   var div = document.createElement("div");
-  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<b style='text-decoration: underline' onclick='addMsg(this)'>" + _tmp[1] + "</b>'</div>";
+  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<b style='text-decoration: underline;cursor: pointer;' onclick='addMsg(this)'>" + _tmp[1] + "</b>'</div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
 

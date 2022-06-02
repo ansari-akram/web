@@ -115,6 +115,8 @@ function addMsg(msg) {
 }
 
 function addOnlyMsg(msg) {
+  var _tmp = msg.split("'");
+  console.log(_tmp);
   var div = document.createElement("div");
   div.innerHTML =
     "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +

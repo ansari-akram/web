@@ -119,10 +119,7 @@ function addOnlyMsg(msg) {
   console.log(_tmp);
   console.log(_tmp[1]);
   var div = document.createElement("div");
-  div.innerHTML =
-    "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +
-    msg +
-    "</div>";
+  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<p>" + _tmp[1] + "</p>'</div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
 

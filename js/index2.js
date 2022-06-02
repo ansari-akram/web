@@ -43,7 +43,7 @@ function startSr() {
 }
 
 function addMsg(msg) {
-  console.log('addmsg ' + msg);
+  console.log('addmsg ' + msg.textContent);
   var div = document.createElement("div");
   div.innerHTML =
     "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +

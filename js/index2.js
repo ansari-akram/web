@@ -117,6 +117,7 @@ function addMsg(msg) {
 function addOnlyMsg(msg) {
   var _tmp = msg.split("'");
   console.log(_tmp);
+  console.log(_tmp[1]);
   var div = document.createElement("div");
   div.innerHTML =
     "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +
@@ -127,6 +128,7 @@ function addOnlyMsg(msg) {
 
   document.getElementById("message").value = "";
   document.getElementById("message-box").scrollTop = document.getElementById("message-box").scrollHeight;
+  running = false;
 }
 
 function sendInputToWatson(input) {

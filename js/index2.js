@@ -88,8 +88,7 @@ function addMsg(_msg) {
     }
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
-      console.log(document.getElementById('message-box').children);
-      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent.split("'")[1];
+      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 2].textContent.split("'")[1];
       console.log('MSG', _msg);
       addMsg(_msg);
     }
@@ -124,7 +123,7 @@ function addMsg(_msg) {
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
       console.log(document.getElementById('message-box').children);
-      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 4].textContent.split("'")[1];
+      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent.split("'")[1];
       console.log('MSG', _msg);
       // addMsg(_msg);
     }

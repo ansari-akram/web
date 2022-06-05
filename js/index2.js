@@ -88,8 +88,9 @@ function addMsg(_msg) {
     }
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
-      console.log('MSG', document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
-      // addMsg(msg);
+      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent.split("'")[1];
+      console.log('MSG', _msg);
+      addMsg(_msg);
     }
   }
 
@@ -121,8 +122,9 @@ function addMsg(_msg) {
     }
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
-      console.log('MSG', document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
-      // addMsg(msg);
+      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 4].textContent.split("'")[1];
+      console.log('MSG', _msg);
+      addMsg(_msg);
     }
   }
 

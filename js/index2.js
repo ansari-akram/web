@@ -88,7 +88,7 @@ function addMsg(_msg) {
     }
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
-      console.log('MSG', prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
+      console.log('MSG', document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
       // addMsg(msg);
     }
   }
@@ -121,7 +121,7 @@ function addMsg(_msg) {
     }
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
-      console.log('MSG', prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
+      console.log('MSG', document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
       // addMsg(msg);
     }
   }

@@ -146,7 +146,7 @@ function addOnlyMsg(msg) {
 }
 
 function sendInputToWatson(input, _spell) {
-  var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell_check},
+  var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell},
     unknown = "I didn't quite get that.",
     sorry = "Sorry, I am not able to detect the language you are asking.",
     api = server_api + "/watson-assistant/";

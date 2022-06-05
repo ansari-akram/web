@@ -90,7 +90,7 @@ function addMsg(_msg) {
       removeLoader();
       _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 2].textContent.split("'")[1];
       console.log('MSG', _msg);
-      addMsg(_msg);
+      sendInputToWatson(_msg, true);
     }
   }
 
@@ -124,11 +124,11 @@ function addMsg(_msg) {
       removeLoader();
       _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent;
       console.log('MSG', _msg);
-      addMsg(_msg);
+      sendInputToWatson(_msg, false);
     }
   }
 
-  else sendInputToWatson(msg);
+  else sendInputToWatson(msg, true);
 }
 
 function addOnlyMsg(msg) {
@@ -145,8 +145,8 @@ function addOnlyMsg(msg) {
   running = false;
 }
 
-function sendInputToWatson(input) {
-  var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '' },
+function sendInputToWatson(input, _spell_check) {
+  var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell_check},
     unknown = "I didn't quite get that.",
     sorry = "Sorry, I am not able to detect the language you are asking.",
     api = server_api + "/watson-assistant/";

@@ -86,6 +86,11 @@ function addMsg(_msg) {
       setTimeout(addResponseMsg, 500, "Thank You for your co-operations with us.", true, _data1);
       setTimeout(addResponseMsg, 1000, "Please feel free to ask any other questions.", true, _data2);
     }
+    else if (prev_msg.includes('Did you mean')) {
+      removeLoader();
+      console.log('MSG', prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 4].textContent);
+      // addMsg(msg);
+    }
   }
 
   else if (msg.toLowerCase() == "no") {
@@ -113,6 +118,11 @@ function addMsg(_msg) {
       var _data1 = { 'user_email': email, 'event_type': livechat_id, 'event_question': ques, 'event_answer': "Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No", 'session_value': '', 'intent': dept_custom };
       setTimeout(addResponseMsg, 500, "Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No", true, _data1)
       setTimeout(addResponseMsg, 1000, "<p onclick='transferLiveChat()'>Yes</p> / <p onclick='ask_another()'>No</p>")
+    }
+    else if (prev_msg.includes('Did you mean')) {
+      removeLoader();
+      console.log('MSG', prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 4].textContent);
+      // addMsg(msg);
     }
   }
 

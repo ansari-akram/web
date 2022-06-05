@@ -81,8 +81,8 @@ function addMsg(_msg, _spell_check=true) {
     }
     else if (prev_msg == "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.") {
       removeLoader();
-      var _data1 = { 'user_email': email, 'event_type': greeting_id, 'event_question': input, 'event_answer': "Thank You for your co-operations with us.", 'session_value': '', 'intent': dept_custom };
-      var _data2 = { 'user_email': email, 'event_type': greeting_id, 'event_question': input, 'event_answer': "Please feel free to ask any other questions.", 'session_value': '', 'intent': dept_custom };
+      var _data1 = { 'user_email': email, 'event_type': greeting_id, 'event_question': ques, 'event_answer': "Thank You for your co-operations with us.", 'session_value': '', 'intent': dept_custom };
+      var _data2 = { 'user_email': email, 'event_type': greeting_id, 'event_question': ques, 'event_answer': "Please feel free to ask any other questions.", 'session_value': '', 'intent': dept_custom };
       setTimeout(addResponseMsg, 500, "Thank You for your co-operations with us.", true, _data1);
       setTimeout(addResponseMsg, 1000, "Please feel free to ask any other questions.", true, _data2);
     }

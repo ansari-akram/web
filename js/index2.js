@@ -4,7 +4,7 @@ var running = false,
   name = "",
   email = "",
   dept_custom = "Custom"
-  server_api = 'https://ac-cbfe-d1.zu.ac.ae/chatbot',
+server_api = 'https://ac-cbfe-d1.zu.ac.ae/chatbot',
   greeting_id = "8",
   livechat_id = "6",
   no_answer_id = "5",
@@ -151,8 +151,10 @@ function sendInputToWatson(input) {
         removeLoader();
         console.log(JSON.parse(text));
 
-        response_list.push(JSON.parse(text).answer);
-        intents_list.push(JSON.parse(text).intent);
+        if (JSON.parse(text).intent != "spell") {
+          response_list.push(JSON.parse(text).answer);
+          intents_list.push(JSON.parse(text).intent);
+        }
 
         if (JSON.parse(text).intent != "spell") {
           for (var i = 0; i < response_list.length; i++) {

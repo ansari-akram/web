@@ -363,7 +363,7 @@ function transferLiveChat() {
     msgs.push(divs[i].innerText);
   }
 
-  window.LiveChatWidget.call("set_customer_name", name);
+  window.LiveChatWidget.call("set_customer_name", user_name);
   window.LiveChatWidget.call("set_customer_email", email);
   window.LiveChatWidget.call("maximize");
   window.LiveChatWidget.call("set_session_variables", {

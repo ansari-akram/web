@@ -282,7 +282,7 @@ function sendInputToWatson(input) {
 
 function transferLiveChat() {
   //logout
-  var data = { 'user_email': email, 'event_type': '2', 'event_question': '', 'intent': 'Logout' };
+  var data = { 'user_email': email, 'event_type': '2', 'event_question': '', 'event_answer': '', 'intent': 'Logout' };
   fetch(server_api + "/reset/", {
     method: "POST",
     body: JSON.stringify(data),
@@ -293,7 +293,7 @@ function transferLiveChat() {
   });
 
   // live chat count
-  var data = { 'user_email': email, 'event_type': '6', 'event_question': '', 'intent': "LiveChat" };
+  var data = { 'user_email': email, 'event_type': '6', 'event_question': '', 'event_answer': '', 'intent': "LiveChat" };
   fetch(server_api + "/reset/", {
     method: "POST",
     body: JSON.stringify(data),

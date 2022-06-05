@@ -19,7 +19,7 @@ function send() {
   if (msg == "") return;
   var msg = document.getElementById("message").value;
   running = true;
-  addMsg(msg);
+  addMsg(msg, true);
 }
 
 function startSr() {
@@ -34,7 +34,7 @@ function startSr() {
       .map(result => result[0])
       .map(result => result.transcript)
       .join('')
-    addMsg(transcript);
+    addMsg(transcript, true);
   });
 
   if (speech == true) {
@@ -42,7 +42,7 @@ function startSr() {
   }
 }
 
-function addMsg(_msg) {
+function addMsg(_msg, _spell_check=true) {
   var msg = _msg.textContent;
   if (msg === undefined) {
     msg = _msg;
@@ -58,6 +58,14 @@ function addMsg(_msg) {
 
   document.getElementById("message").value = "";
   document.getElementById("message-box").scrollTop = document.getElementById("message-box").scrollHeight;
+
+  //LOADER START
+  var loader = document.createElement("div");
+  loader.innerHTML = '<div title="getting response..."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve"><rect x="0" y="10" width="4" height="10" fill="grey" opacity="0.2"><animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" /></rect><rect x="8" y="10" width="4" height="10" fill="grey"  opacity="0.2"><animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" /></rect><rect x="16" y="10" width="4" height="10" fill="grey"  opacity="0.2"><animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" /></rect></svg></div>';
+  loader.className = "chat-message-received loader";
+  document.getElementById("message-box").appendChild(loader);
+  document.getElementById("message-box").scrollTop = document.getElementById("message-box").scrollHeight;
+  //LOADER END
 
   prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent;
   console.log('PREV MSG', prev_msg);
@@ -82,8 +90,7 @@ function addMsg(_msg) {
       removeLoader();
       _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 2].textContent.split("'")[1];
       console.log('MSG', _msg);
-      addOnlyMsg(_msg);
-      sendInputToWatson(_msg, true);
+      addMsg(_msg, false);
     }
   }
 
@@ -117,12 +124,11 @@ function addMsg(_msg) {
       removeLoader();
       _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent;
       console.log('MSG', _msg);
-      addOnlyMsg(_msg);
-      sendInputToWatson(_msg, false);
+      addMsg(_msg, false);
     }
   }
 
-  else sendInputToWatson(msg, true);
+  else sendInputToWatson(msg, _spell_check);
 }
 
 function addOnlyMsg(msg) {
@@ -139,15 +145,7 @@ function addOnlyMsg(msg) {
   running = false;
 }
 
-function sendInputToWatson(input, _spell_check) {
-  //LOADER START
-  var loader = document.createElement("div");
-  loader.innerHTML = '<div title="getting response..."><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve"><rect x="0" y="10" width="4" height="10" fill="grey" opacity="0.2"><animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" /></rect><rect x="8" y="10" width="4" height="10" fill="grey"  opacity="0.2"><animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" /></rect><rect x="16" y="10" width="4" height="10" fill="grey"  opacity="0.2"><animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" /><animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" /></rect></svg></div>';
-  loader.className = "chat-message-received loader";
-  document.getElementById("message-box").appendChild(loader);
-  document.getElementById("message-box").scrollTop = document.getElementById("message-box").scrollHeight;
-  //LOADER END
-
+function sendInputToWatson(input, _spell) {
   var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell_check},
     unknown = "I didn't quite get that.",
     sorry = "Sorry, I am not able to detect the language you are asking.",

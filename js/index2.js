@@ -122,10 +122,9 @@ function addMsg(_msg) {
     }
     else if (prev_msg.includes('Did you mean')) {
       removeLoader();
-      console.log(document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent);
-      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent.split("'")[1];
+      _msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent;
       console.log('MSG', _msg);
-      // addMsg(_msg);
+      addMsg(_msg);
     }
   }
 

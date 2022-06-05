@@ -143,7 +143,7 @@ function addOnlyMsg(msg) {
 
 function sendInputToWatson(input, _spell) {
   var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell },
-    unknown = "I didn't quite get that.",
+    unknown = "I didn't quite get that. Please rephrase your query.",
     sorry = "Sorry, I am not able to detect the language you are asking.",
     api = server_api + "/watson-assistant/";
 
@@ -224,11 +224,12 @@ function sendInputToWatson(input, _spell) {
 
             else if (JSON.parse(text).intent.toLowerCase() == "spell") {
               var _data1 = {};
-              addOnlyMsg("Did you mean '" + JSON.parse(text).answer + "'");
+              addOnlyMsg("Did you mean '" + JSON.parse(text).answer + "'. Please type Yes or No.");
             }
 
             else if (JSON.parse(text).intent == "Live_Agent") {
-              addResponseMsg(JSON.parse(text).answer);
+              var _data1 = { 'user_email': email, 'event_type': livechat_id, 'event_question': input, 'event_answer': JSON.parse(text).answer, 'session_value': '', 'intent': JSON.parse(text).intent };
+              addResponseMsg(JSON.parse(text).answer, );
               setTimeout(transferLiveChat, 3000)
             }
 

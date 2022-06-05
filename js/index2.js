@@ -68,7 +68,7 @@ function addMsg(_msg) {
   //LOADER END
 
   prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent;
-  // console.log(prev_msg);
+  console.log('prev_msg', prev_msg);
   //console.log(document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3]);
 
   if (msg.toLowerCase().includes("connect to live agent")) {

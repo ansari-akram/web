@@ -192,7 +192,7 @@ function sendInputToWatson(input) {
 
           // NEW CODE
           if (JSON.parse(text).intent.toLowerCase() != '') {
-            if (response_list[0] == JSON.parse(text).answer && response_list.length >= 3) {
+            if (response_list[0] == JSON.parse(text).answer && response_list.length >= 2) {
               if (JSON.parse(text).intent.toLowerCase() == "general") {
                 var _data1 = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': JSON.parse(text).answer + " " + JSON.parse(text).url, 'session_value': '', 'intent': 'General' };
                 addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, false, _data1);

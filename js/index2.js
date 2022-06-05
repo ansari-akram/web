@@ -154,12 +154,14 @@ function sendInputToWatson(input) {
         response_list.push(JSON.parse(text).answer);
         intents_list.push(JSON.parse(text).intent);
 
-        for (var i = 0; i < response_list.length; i++) {
-          if (response_list[i] != JSON.parse(text).answer) {
-            response_list = [];
-            intents_list = [];
-            response_list.push(JSON.parse(text).answer);
-            intents_list.push(JSON.parse(text).intent);
+        if (JSON.parse(text).intent != "spell") {
+          for (var i = 0; i < response_list.length; i++) {
+            if (response_list[i] != JSON.parse(text).answer) {
+              response_list = [];
+              intents_list = [];
+              response_list.push(JSON.parse(text).answer);
+              intents_list.push(JSON.parse(text).intent);
+            }
           }
         }
 

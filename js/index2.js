@@ -110,7 +110,7 @@ function addMsg(_msg) {
       }).then(res => {
         res.text().then(function (text) { })
       });
-      var _data1 = { 'user_email': email, 'event_type': livechat_id, 'event_question': input, 'event_answer': "Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No", 'session_value': '', 'intent': dept_custom };
+      var _data1 = { 'user_email': email, 'event_type': livechat_id, 'event_question': ques, 'event_answer': "Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No", 'session_value': '', 'intent': dept_custom };
       setTimeout(addResponseMsg, 500, "Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No", true, _data1)
       setTimeout(addResponseMsg, 1000, "<p onclick='transferLiveChat()'>Yes</p> / <p onclick='ask_another()'>No</p>")
     }

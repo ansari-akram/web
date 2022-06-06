@@ -417,7 +417,11 @@ function addResponseMsg(msg, _commit, _data) {
 }
 
 function addResponseMsgWithUrl(msg, url, _commit, _data) {
-  console.log('URL', url);
+
+  url.array.forEach(element => {
+    console.log('element', element[0]);
+  });
+
   var div = document.createElement("div");
   div.innerHTML = "<div class='chat-message-received more' id='minimize'><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the link above to get more details.<br/><br/></div>";
   div.className = "chat-message-div";

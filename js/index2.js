@@ -418,12 +418,14 @@ function addResponseMsg(msg, _commit, _data) {
 
 function addResponseMsgWithUrl(msg, url, _commit, _data) {
 
+  var urls = ""
+
   url.forEach(element => {
-    console.log('element', element[0]);
+    urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element + "</a><br />"
   });
 
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received more' id='minimize'><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the link above to get more details.<br/><br/></div>";
+  div.innerHTML = "<div class='chat-message-received more' id='minimize'>"+ urls +"<br />Please click on the link above to get more details.<br/><br/></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(

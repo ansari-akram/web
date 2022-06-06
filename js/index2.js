@@ -418,7 +418,7 @@ function addResponseMsg(msg, _commit, _data) {
 
 function addResponseMsgWithUrl(msg, url, _commit, _data) {
 
-  url.array.forEach(element => {
+  url.forEach(element => {
     console.log('element', element[0]);
   });
 

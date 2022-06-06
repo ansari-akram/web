@@ -421,7 +421,7 @@ function addResponseMsgWithUrl(msg, url, _commit, _data) {
   var urls = ""
 
   url.forEach(element => {
-    urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element + "</a><br />"
+    urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element[0] + "</a><br /><br />"
   });
 
   var div = document.createElement("div");

@@ -421,8 +421,10 @@ function addResponseMsgWithUrl(msg, url, _commit, _data) {
   console.log(url);
 
   url.forEach(element => {
-    urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element[0] + "</a><br /><br />"
+    urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element + "</a><br /><br />"
   });
+
+  console.log(urls);
 
   var div = document.createElement("div");
   div.innerHTML = "<div class='chat-message-received more' id='minimize'>"+ urls +"<br />Please click on the link above to get more details.<br/><br/></div>";

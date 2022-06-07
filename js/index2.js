@@ -206,8 +206,7 @@ function sendInputToWatson(input, _spell) {
           if (JSON.parse(text).intent.toLowerCase() != '') {
             if (response_list[0] == JSON.parse(text).answer && response_list.length >= 2) {
               if (JSON.parse(text).intent.toLowerCase() == "general") {
-                var _data1 = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': JSON.parse(text).answer + " " + JSON.parse(text).url, 'session_value': '', 'intent': 'General' };
-                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, false, _data1);
+                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, true, _data1);
               }
               else {
                 var _data1 = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': JSON.parse(text).answer, 'session_value': '', 'intent': JSON.parse(text).intent };
@@ -218,8 +217,7 @@ function sendInputToWatson(input, _spell) {
             }
 
             else if (JSON.parse(text).intent.toLowerCase() == "general") {
-              var _data1 = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': JSON.parse(text).answer + " " + JSON.parse(text).url, 'session_value': '', 'intent': JSON.parse(text).intent };
-              addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, false, _data1);
+              addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, true, _data1);
             }
 
             else if (JSON.parse(text).intent.toLowerCase() == "spell") {
@@ -418,7 +416,7 @@ function addResponseMsg(msg, _commit, _data) {
 
 function addResponseMsgWithUrl(msg, url, _commit, _data) {
 
-  var urls = ""
+  var urls = msg + "\n"
 
   url.forEach(element => {
     urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element[0] + "</a><br /><br />"
@@ -432,6 +430,12 @@ function addResponseMsgWithUrl(msg, url, _commit, _data) {
     "message-box"
   ).scrollHeight;
   running = false;
+
+  url.forEach(element => {
+    urls += url + "\n"
+  });
+
+  var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': urls, 'session_value': '', 'intent': 'General' };
 
   if (_commit) {
     fetch(server_api + "/reset/", {

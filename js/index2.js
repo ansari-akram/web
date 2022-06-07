@@ -436,7 +436,7 @@ function addResponseMsgWithUrl(msg, url, _commit, _data, _input) {
   running = false;
 
   url.forEach(element => {
-    urls += url + "\n"
+    urls += element + "\n"
   });
 
   var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': _input, 'event_answer': urls, 'session_value': '', 'intent': 'General' };

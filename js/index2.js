@@ -424,7 +424,6 @@ function addResponseMsgWithUrl(msg, url, _commit, _data, _input) {
     urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element + "</a><br /><br />"
   });
 
-
   var div = document.createElement("div");
   div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + urls + "<br />Please click on the link above to get more details.<br/><br/></div>";
   div.className = "chat-message-div";
@@ -439,7 +438,7 @@ function addResponseMsgWithUrl(msg, url, _commit, _data, _input) {
   url.forEach(element => {
     _urls += element + "\n"
   });
-  
+
   console.log(_urls);
 
   var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': _input, 'event_answer': _urls, 'session_value': '', 'intent': 'General' };

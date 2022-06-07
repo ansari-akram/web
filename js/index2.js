@@ -287,7 +287,7 @@ function sendInputToWatson(input, _spell) {
 
       else {
         removeLoader();
-        var _data1 = { 'user_email': email, 'event_type': greeting_id, 'event_question': input, 'event_answer': unknown, 'session_value': '', 'intent': dept_custom };
+        var _data1 = { 'user_email': email, 'event_type': no_answer_id, 'event_question': input, 'event_answer': unknown, 'session_value': '', 'intent': dept_custom };
         addResponseMsg(unknown, true, _data1);
       }
     });

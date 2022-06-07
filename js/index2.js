@@ -206,7 +206,7 @@ function sendInputToWatson(input, _spell) {
           if (JSON.parse(text).intent.toLowerCase() != '') {
             if (response_list[0] == JSON.parse(text).answer && response_list.length >= 2) {
               if (JSON.parse(text).intent.toLowerCase() == "general") {
-                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, true, _data1);
+                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, true, _data1, input);
               }
               else {
                 var _data1 = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': JSON.parse(text).answer, 'session_value': '', 'intent': JSON.parse(text).intent };
@@ -217,7 +217,7 @@ function sendInputToWatson(input, _spell) {
             }
 
             else if (JSON.parse(text).intent.toLowerCase() == "general") {
-              addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, true, _data1);
+              addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url, true, _data1, input);
             }
 
             else if (JSON.parse(text).intent.toLowerCase() == "spell") {
@@ -414,7 +414,7 @@ function addResponseMsg(msg, _commit, _data) {
   }
 }
 
-function addResponseMsgWithUrl(msg, url, _commit, _data) {
+function addResponseMsgWithUrl(msg, url, _commit, _data, _input) {
 
   var urls = ""
 
@@ -439,7 +439,7 @@ function addResponseMsgWithUrl(msg, url, _commit, _data) {
     urls += url + "\n"
   });
 
-  var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'event_answer': urls, 'session_value': '', 'intent': 'General' };
+  var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': _input, 'event_answer': urls, 'session_value': '', 'intent': 'General' };
 
   if (_commit) {
     fetch(server_api + "/reset/", {

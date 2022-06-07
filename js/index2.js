@@ -227,7 +227,7 @@ function sendInputToWatson(input, _spell) {
 
             else if (JSON.parse(text).intent == "Live_Agent") {
               var _data1 = { 'user_email': email, 'event_type': livechat_id, 'event_question': input, 'event_answer': JSON.parse(text).answer, 'session_value': '', 'intent': JSON.parse(text).intent };
-              addResponseMsg(JSON.parse(text).answer, );
+              addResponseMsg(JSON.parse(text).answer,);
               setTimeout(transferLiveChat, 3000)
             }
 
@@ -424,10 +424,9 @@ function addResponseMsgWithUrl(msg, url, _commit, _data, _input) {
     urls += "<a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + element + "</a><br /><br />"
   });
 
-  console.log(urls);
 
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received more' id='minimize'>"+ urls +"<br />Please click on the link above to get more details.<br/><br/></div>";
+  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + urls + "<br />Please click on the link above to get more details.<br/><br/></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
@@ -440,8 +439,10 @@ function addResponseMsgWithUrl(msg, url, _commit, _data, _input) {
   url.forEach(element => {
     _urls += element + "\n"
   });
+  
+  console.log(_urls);
 
-  var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': _input, 'event_answer': urls, 'session_value': '', 'intent': 'General' };
+  var _data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': _input, 'event_answer': _urls, 'session_value': '', 'intent': 'General' };
 
   if (_commit) {
     fetch(server_api + "/reset/", {

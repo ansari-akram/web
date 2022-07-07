@@ -509,6 +509,7 @@ function validateEmail(email) {
 function clear_chatbot() {
   var msgs = document.getElementById("message-box");
   db_commit = false;
+  running = false;
 
   while (msgs.lastChild) {
     if (msgs.lastChild.textContent.includes("This is Zayed University AI Chatbot.")) break;

@@ -3,12 +3,16 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 var running = false,
   name = "",
   email = "",
-  dept_custom = "Custom"
-server_api = 'https://ac-cbfe-d1.zu.ac.ae/chatbot',
+  dept_custom = "Custom",
+  server_api = 'http://127.0.0.1:8000/chatbot',
   greeting_id = "8",
+  reset_id = "7",
   livechat_id = "6",
   no_answer_id = "5",
   right_answer_id = "4",
+  wrong_answer_id = "3",
+  log_out_id = "2",
+  log_in_id = "1",
   message_box = document.getElementById('message-box');
 
 var response_list = [];
@@ -132,7 +136,7 @@ function addOnlyMsg(msg) {
   console.log(_tmp);
   console.log(_tmp[1]);
   var div = document.createElement("div");
-  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<b style='text-decoration: underline;cursor: pointer;' onclick='addMsg(this)'>" + _tmp[1] + "</b>'</div>";
+  div.innerHTML = "<span style='flex-grow:1'></span><div class='chat-message-sent'>" + _tmp[0] + "'<b style='text-decoration: underline;cursor: pointer;' onclick='addMsg(this,false)'>" + _tmp[1] + "</b>'</div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
 
@@ -142,7 +146,7 @@ function addOnlyMsg(msg) {
 }
 
 function sendInputToWatson(input, _spell) {
-  var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell },
+  var data = { 'user_email': email, 'event_type': right_answer_id, 'event_question': input, 'session_value': '', 'intent': '', 'spell_check_bool': _spell },
     unknown = "I didn't quite get that. Please rephrase your query.",
     sorry = "Sorry, I am not able to detect the language you are asking.",
     api = server_api + "/watson-assistant/";
@@ -296,7 +300,7 @@ function sendInputToWatson(input, _spell) {
 
 function transferLiveChat() {
   //logout
-  var data = { 'user_email': email, 'event_type': '2', 'event_question': '', 'event_answer': '', 'intent': 'Logout' };
+  var data = { 'user_email': email, 'event_type': log_out_id, 'event_question': '', 'event_answer': '', 'intent': 'Logout' };
   fetch(server_api + "/reset/", {
     method: "POST",
     body: JSON.stringify(data),
@@ -307,7 +311,7 @@ function transferLiveChat() {
   });
 
   // live chat count
-  var data = { 'user_email': email, 'event_type': '6', 'event_question': '', 'event_answer': '', 'intent': "LiveChat" };
+  var data = { 'user_email': email, 'event_type': livechat_id, 'event_question': '', 'event_answer': '', 'intent': "LiveChat" };
   fetch(server_api + "/reset/", {
     method: "POST",
     body: JSON.stringify(data),
@@ -520,7 +524,7 @@ function clear_chatbot() {
   }
 
   if (db_commit) {
-    var data = { 'user_email': email, 'event_type': '7', 'event_question': '', 'intent': 'Reset' };
+    var data = { 'user_email': email, 'event_type': reset_id, 'event_question': '', 'intent': 'Reset' };
     fetch(server_api + "/login/", {
       method: "POST",
       body: JSON.stringify(data),
@@ -546,7 +550,7 @@ function checkForm() {
   if (validateEmail2(email)) {
     if (user_name != '') {
       if (document.getElementById("cred-form").classList.contains("active")) {
-        var data = { 'user_email': email, 'event_type': '1', 'event_question': '', 'intent': 'Login' };
+        var data = { 'user_email': email, 'event_type': log_in_id, 'event_question': '', 'intent': 'Login' };
         fetch(server_api + "/login/", {
           method: "POST",
           body: JSON.stringify(data),
